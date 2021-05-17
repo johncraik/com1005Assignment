@@ -1,3 +1,4 @@
-public class RamblersSearch {
+public class RamblersSearch extends Search {
+    
     
 }
