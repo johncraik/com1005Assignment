@@ -10,9 +10,6 @@ import java.util.*;
 
 public abstract class Search {
 
-  //Git push test
-  protected int Test;
-  
   protected SearchNode initNode; //initial node
   protected SearchNode currentNode; // current node
   protected SearchNode old_node; //node found on open with same state as new one
