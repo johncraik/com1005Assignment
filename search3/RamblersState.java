@@ -40,11 +40,6 @@ public class RamblersState extends SearchState {
         ArrayList<SearchState> succs = new ArrayList<>();
 
         //succesors to current node are horizontal and vertical (not diagonal)
-        Coords topNode = new Coords((node.gety() - 1), node.getx()); //-1 on yaxies
-        Coords btmNode = new Coords((node.gety() + 1), node.getx()); //+1 on yaxies
-        Coords lftNode = new Coords(node.gety(), (node.getx() - 1)); //-1 on xaxies
-        Coords rgtNode = new Coords(node.gety(), (node.getx() + 1)); //+1 on xaxies
-
         int currHeight = terrain[node.gety()][node.getx()];
 
         //top node
