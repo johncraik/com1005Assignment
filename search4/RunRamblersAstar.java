@@ -5,8 +5,8 @@ public class RunRamblersAstar {
 
         TerrainMap map = new TerrainMap("diablo.pgm");
 
-        RamblersSearch searcher = new RamblersSearch(map, new Coords(1, 50));
-        SearchState initState = (SearchState) new RamblersState(new Coords(56, 60), 0, 0);
+        RamblersSearch searcher = new RamblersSearch(map, new Coords(87,5));
+        SearchState initState = (SearchState) new RamblersState(new Coords(76, 87), 0, 0);
 
         float res_astar = searcher.runSearchE(initState, "AStar");
         System.out.println(res_astar);
