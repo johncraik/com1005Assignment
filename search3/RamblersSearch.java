@@ -1,7 +1,5 @@
 package search3;
 
-import java.awt.Point;
-
 public class RamblersSearch extends Search {
 
     private TerrainMap map; // map we're searching
