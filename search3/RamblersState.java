@@ -44,6 +44,7 @@ public class RamblersState extends SearchState {
 
         //maximum of 4 possible succs nodes
         for (int i = 0; i < 4; i++){
+            //Define the successor node:
             Coords succsNode = null;
             if (i == 0){
                 // top node
@@ -62,8 +63,12 @@ public class RamblersState extends SearchState {
                 succsNode = new Coords(node.gety(), (node.getx() + 1));// +1 on xaxies
             }
 
-
-            try {
+            //Add node to list if within bounds
+            if ((succsNode.gety() > -1 && succsNode.gety() < map.getDepth())
+                && (succsNode.getx() > -1 && succsNode.getx() < map.getWidth())
+            ){
+                //within the bounds of the map
+                
                 /*
                  * calculate the cost using ramblers cost: if successor node is heigher: c = 1 +
                  * |succsHeight(y,x) - currHeight(y,x)| if not: c = 1
@@ -79,8 +84,6 @@ public class RamblersState extends SearchState {
 
                 // Add the successor node to the list
                 succs.add(new RamblersState(new Coords((node.gety() - 1), node.getx()), cost));
-            } catch (Exception e) {
-                // node is not in the map
             }
         }
         //return the list
@@ -103,7 +106,7 @@ public class RamblersState extends SearchState {
 
     //return object as string (toString)
     public String toString(){
-        return ("Pixel => x:" 
+        return ("x:" 
             + String.valueOf(node.getx()) 
             + ", y:" 
             + String.valueOf(node.gety())
