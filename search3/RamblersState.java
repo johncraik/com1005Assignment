@@ -90,7 +90,14 @@ public class RamblersState extends SearchState {
 
     @Override
     boolean sameState(SearchState n2) {
-        // TODO Auto-generated method stub
+        RamblersState rs2 = (RamblersState) n2;
+        Coords rs2Node = rs2.getNode();
+        if (rs2Node.gety() == node.gety() && rs2Node.getx() == node.getx()){
+            //same node
+            return true;
+        }
+
+        //not the same node
         return false;
     }
 
