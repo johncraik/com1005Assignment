@@ -5,10 +5,10 @@ import java.awt.Point;
 public class RamblersSearch extends Search {
 
     private TerrainMap map; // map we're searching
-    private Point goal; // goal node
+    private Coords goal; // goal node
 
     // Constructor
-    public RamblersSearch(TerrainMap m, Point g) {
+    public RamblersSearch(TerrainMap m, Coords g) {
         map = m;
         goal = g;
     }
@@ -19,7 +19,7 @@ public class RamblersSearch extends Search {
     }
 
     //Return the goal node in the search
-    public Point getGoal() {
+    public Coords getGoal() {
         return goal;
     }    
     

@@ -1,30 +1,29 @@
 package search3;
 
 import java.util.ArrayList;
-import java.awt.Point;
 
 public class RamblersState extends SearchState {
 
     //Current node in the search state:
-    private Point node;
+    private Coords node;
 
     //Constructor:
-    public RamblersState(Point cnode, int lc) {
+    public RamblersState(Coords cnode, int lc) {
         node = cnode;
         localCost = lc;
     }
 
     //Get node
-    public Point getNode(){
+    public Coords getNode(){
         return node;
     }
     
 
     @Override
     boolean goalPredicate(Search searcher) {
-        RamblersSearch msearcher = (RamblersSearch) searcher;
-        Point goal = msearcher.getGoal(); //Get the gaol node
-        if (goal.x == node.x && goal.y == node.y){
+        RamblersSearch rsearcher = (RamblersSearch) searcher;
+        Coords goal = rsearcher.getGoal(); //Get the gaol node
+        if (goal.getx() == node.getx() && goal.gety() == node.gety()){
             //If the goal and current node are equal, return true.
             return true;
         }
@@ -35,8 +34,14 @@ public class RamblersState extends SearchState {
 
     @Override
     ArrayList<SearchState> getSuccessors(Search searcher) {
-        // TODO Auto-generated method stub
-        return null;
+        RamblersSearch rsearcher = (RamblersSearch) searcher;
+        TerrainMap map = rsearcher.getMap();
+        ArrayList<SearchState> succs = new ArrayList<>();
+
+        //succesors to current node are horizontal and vertical (not diagonal)
+
+
+        return succs;
     }
 
     @Override
