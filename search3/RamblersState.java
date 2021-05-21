@@ -7,6 +7,12 @@ public class RamblersState extends SearchState {
     //Current node in the search state:
     private String node;
 
+    //Constructor:
+    public RamblersState(String cnode, int lc) {
+        node = cnode;
+        localCost = lc;
+    }
+
     @Override
     boolean goalPredicate(Search searcher) {
         // TODO Auto-generated method stub
