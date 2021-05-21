@@ -22,7 +22,14 @@ public class RamblersState extends SearchState {
 
     @Override
     boolean goalPredicate(Search searcher) {
-        // TODO Auto-generated method stub
+        RamblersSearch msearcher = (RamblersSearch) searcher;
+        Point goal = msearcher.getGoal(); //Get the gaol node
+        if (goal.x == node.x && goal.y == node.y){
+            //If the goal and current node are equal, return true.
+            return true;
+        }
+
+        //if the goal node is not the same as the current node, returns false.
         return false;
     }
 
