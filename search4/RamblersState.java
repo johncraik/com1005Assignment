@@ -8,9 +8,10 @@ public class RamblersState extends SearchState {
     private Coords node;
 
     //Constructor:
-    public RamblersState(Coords cnode, int lc) {
+    public RamblersState(Coords cnode, int lc, int rc) {
         node = cnode;
         localCost = lc;
+        estRemCost = rc;
     }
 
     //Get node
@@ -37,6 +38,8 @@ public class RamblersState extends SearchState {
         RamblersSearch rsearcher = (RamblersSearch) searcher;
         TerrainMap map = rsearcher.getMap();
         int[][] terrain = map.getTmap();
+        Coords goal = rsearcher.getGoal();
+
         ArrayList<SearchState> succs = new ArrayList<>();
 
         //succesors to current node are horizontal and vertical (not diagonal)
@@ -82,8 +85,14 @@ public class RamblersState extends SearchState {
                     cost += (int) Math.round(Math.abs(succsHeight - currHeight));
                 }
 
+                //Calculate the estimated remaining cost using manhattan distance:
+                int rCost = (int) (Math.abs(node.gety() - goal.gety()) 
+                    + Math.abs(node.getx() - goal.getx())
+                    + Math.abs(succsHeight - currHeight)
+                );
+
                 // Add the successor node to the list
-                succs.add(new RamblersState(succsNode, cost));
+                succs.add(new RamblersState(succsNode, cost, rCost));
             }
         }
         //return the list
