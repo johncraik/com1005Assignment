@@ -1,3 +1,5 @@
+package search4;
+
 /*
  *	Search.java - abstract class specialising to MapSearch etc
  *	This version supports A*

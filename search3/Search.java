@@ -1,3 +1,5 @@
+package search3;
+
 /*
 *	Search.java - abstract class specialising to MapSearch etc
 * Phil Green 2013 version

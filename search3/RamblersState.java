@@ -1,3 +1,5 @@
+package search3;
+
 import java.util.ArrayList;
 
 public class RamblersState extends SearchState{

@@ -1,3 +1,5 @@
+package search3;
+
 /**
  * Coords.java
  *
