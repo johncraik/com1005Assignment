@@ -10,8 +10,5 @@ public class RunRamblersBB {
 
          String res_bb = searcher.runSearch(initState, "branchAndBound");
          System.out.println(res_bb);
-
-        //String res_astar = searcher.runSearch(initState, "AStar");
-        //System.out.println(res_astar);
     }
 }
