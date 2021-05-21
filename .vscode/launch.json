@@ -4,7 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "type": "java",
+            "name": "Launch RunRamblersBB",
+            "request": "launch",
+            "mainClass": "search3.RunRamblersBB",
+            "projectName": "com1005Assignment_68d85d57"
+        },
         {
             "type": "java",
             "name": "Launch Current File",
