@@ -1,4 +1,4 @@
-package search3;
+package search4;
 
 /**
   * TestTerrainMap.java
