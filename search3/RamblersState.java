@@ -36,10 +36,41 @@ public class RamblersState extends SearchState {
     ArrayList<SearchState> getSuccessors(Search searcher) {
         RamblersSearch rsearcher = (RamblersSearch) searcher;
         TerrainMap map = rsearcher.getMap();
+        int[][] terrain = map.getTmap();
         ArrayList<SearchState> succs = new ArrayList<>();
 
         //succesors to current node are horizontal and vertical (not diagonal)
+        Coords topNode = new Coords((node.gety() - 1), node.getx()); //-1 on yaxies
+        Coords btmNode = new Coords((node.gety() + 1), node.getx()); //+1 on yaxies
+        Coords lftNode = new Coords(node.gety(), (node.getx() - 1)); //-1 on xaxies
+        Coords rgtNode = new Coords(node.gety(), (node.getx() + 1)); //+1 on xaxies
 
+        int currHeight = terrain[node.gety()][node.getx()];
+
+        //top node
+        try{
+            /*
+            * calculate the cost using ramblers cost:
+            * if successor node is heigher:
+            * c = 1 + |succsHeight(y,x) - currHeight(y,x)|
+            * if not:
+            * c = 1
+            */
+            int succsHeight = terrain[(node.gety() - 1)][node.getx()]; //-1 on yaxies
+
+            //Add the default cost for moving
+            int cost = 1;
+            if (currHeight < succsHeight){
+                //Add on the extra cost for going 'up hill'
+                cost += (int) Math.round(Math.abs(succsHeight - currHeight));
+            }
+
+            //Add the successor node to the list
+            succs.add(new RamblersState(new Coords((node.gety() - 1), node.getx()), cost));
+        }
+        catch (Exception e){
+            //node is not in the map
+        }
 
         return succs;
     }
