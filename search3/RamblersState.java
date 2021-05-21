@@ -42,33 +42,51 @@ public class RamblersState extends SearchState {
         //succesors to current node are horizontal and vertical (not diagonal)
         int currHeight = terrain[node.gety()][node.getx()];
 
-        //top node
-        try{
-            /*
-            * calculate the cost using ramblers cost:
-            * if successor node is heigher:
-            * c = 1 + |succsHeight(y,x) - currHeight(y,x)|
-            * if not:
-            * c = 1
-            */
-            int succsHeight = terrain[(node.gety() - 1)][node.getx()]; //-1 on yaxies
-
-            //Add the default cost for moving
-            int cost = 1;
-            if (currHeight < succsHeight){
-                //Add on the extra cost for going 'up hill'
-                cost += (int) Math.round(Math.abs(succsHeight - currHeight));
+        //maximum of 4 possible succs nodes
+        for (int i = 0; i < 4; i++){
+            Coords succsNode = null;
+            if (i == 0){
+                // top node
+                succsNode = new Coords((node.gety() - 1), node.getx());// -1 on yaxies
+            }
+            else if (i == 1) {
+                // bottom node
+                succsNode = new Coords((node.gety() + 1), node.getx());// +1 on yaxies
+            }
+            else if (i == 2) {
+                // left node
+                succsNode = new Coords(node.gety(), (node.getx() - 1));// -1 on xaxies
+            }
+            else if (i == 3) {
+                // right node
+                succsNode = new Coords(node.gety(), (node.getx() + 1));// +1 on xaxies
             }
 
-            //Add the successor node to the list
-            succs.add(new RamblersState(new Coords((node.gety() - 1), node.getx()), cost));
-        }
-        catch (Exception e){
-            //node is not in the map
-        }
 
+            try {
+                /*
+                 * calculate the cost using ramblers cost: if successor node is heigher: c = 1 +
+                 * |succsHeight(y,x) - currHeight(y,x)| if not: c = 1
+                 */
+                int succsHeight = terrain[succsNode.gety()][succsNode.getx()];
+
+                // Default cost for moving node
+                int cost = 1;
+                if (currHeight < succsHeight) {
+                    // Add on the extra cost for going 'up hill'
+                    cost += (int) Math.round(Math.abs(succsHeight - currHeight));
+                }
+
+                // Add the successor node to the list
+                succs.add(new RamblersState(new Coords((node.gety() - 1), node.getx()), cost));
+            } catch (Exception e) {
+                // node is not in the map
+            }
+        }
+        //return the list
         return succs;
     }
+       
 
     @Override
     boolean sameState(SearchState n2) {
