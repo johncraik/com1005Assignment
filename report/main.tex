@@ -29,61 +29,69 @@ The 'getSuccessors' function in the class 'RamblersState' was used to get the po
 
 The cost of moving from one state to another was dependent on the height of the current state and the height of the successor state. If the successor state had a height that was lower or equal to the current states height, the cost would simply be 1. However, if the successor state has a height that was greater than the height of the  current states height, the cost was defined by this equation:
 \begin{itemize}
-    \item \textbf{Cost = 1 + (successorHeight(y,x) - currentHeight(y,x)).}
+    \item \textit{Cost = 1 + (successorHeight(y,x) - currentHeight(y,x)).}
 \end{itemize}
 The heights were obtained from a 2D array representing the pgm map, and then compared with eachother to calculate the cost, adding each possible successor state into a list that would be returned by this function.
 
+Once this had been implemented, I created another class 'RunRamblersBB'. This class was used to test my code that I had implemented and produce the statistics used later on in the document for branch-and-bound (Table 1).
 
+
+\break
 \section{Description of my A* implementation}
 Implementing the A* algorithm was fairly simple as most of the work had already been done when implementing branch and bound (however, the code provided in 'search4' was used, not 'search3'). The only difference is the calculation of the cost, as A* uses both ramblers cost and an estimated remaining cost, which is based on the distance the current state is from the goal state.
 
+Calculating the estimated remaining cost was achieved by calculating the difference between the two states, using the equation below:
+\begin{itemize}
+    \item \textit{Remaining Cost = Abs(currentY - successorY) + Abs(currentX - successorX) + Abs(currentHeight - successorHeight)}
+\end{itemize}
 
+Once this had been implemented, I created another class 'RunRamblersAstar'. This class was used to test my code that I had implemented and produce the statistics used later on in the document for A* (Table 2).
+
+\break
 \section{Assessing efficiency}
- 
-
-\subsection{Assessing the efficiency of my branch-and-bound search algorithm}
+ \subsection{Assessing the efficiency of my branch-and-bound search algorithm}
 Table 1 shows 30 randomly chosen start and goal states and their corresponding efficiency, from a 100x100 pgm map. The data below shows the mean average, highest and lowest:
 \begin{itemize}
-	\item Average Efficiency: 0.03197
-	\item Hieghst Efficiency: 0.1818
-	\item Lowest Efficiency: 0.00843
-	\item Range: 0.17337
+	\item Average Efficiency:	3.197\%
+	\item Hieghst Efficiency:	18.18\%
+	\item Lowest Efficiency:	0.843\%
+	\item Range:	17.337\%
 \end{itemize}
 
 \begin{table}[ht]
     \centering
     \begin{tabular}{|c|c|c|}
-	Start State (y,x)&Goal State (y,x)&Efficiency (4sf) \\ \hline
-	(90,70)&(75,38)&0.02169 \\
-	(8,32)	&(93,7)&0.02222 \\
-	(21,68)&(29,80)&0.01599 \\
-	(17,88)&(61,2)&0.02311 \\
-	(86,49)&(65,41)&0.01444 \\
-	(3,87)&(92,98)&0.01804 \\
-	(79,80)&(24,79)&0.01455 \\
-	(25,20)&(64,77)&0.01479 \\
-	(69,70)&(48,46)&0.01545 \\
-	(36,65)&(42,91)&0.02798 \\
-	(52,39)&(4,27)&0.01227 \\
-	(2,47)&(18,22)&0.02340 \\
-	(14,80)&(87,76)&0.01926 \\
-	(9,52)&(19,39)&0.01199 \\
-	(52,1)&(20,34)&0.01360 \\
-	(60,0)&(97,84)&0.01492 \\
-	(56,60)&(1,50)&0.00843 \\
-	(54,88)&(87,83)&0.01060 \\
-	(56,4)&(61,33)&0.07559 \\
-	(82,55)&(86,57)&0.09465 \\
-	(91,96)&(50,5)&0.02513 \\
-	(83,34)&(94,88)&0.02283 \\
-	(41,92)&(36,40)&0.05949 \\
-	(62,76)&(24,59)&0.00923 \\
-	(54,75)&(19,0)&0.01596 \\
-	(34,88)&(70,75)&0.01059 \\
-	(27,98)&(68,15)&0.01801 \\
-	(76,7)&(79,35)&0.1096 \\
-	(44,60)&(43,54)&0.1818 \\
-	(76,87)&(87,5)&0.03351 \\
+	Start State (y,x)&Goal State (y,x)&Efficiency (\%, 4sf) \\ \hline
+	(90,70)&(75,38)&2.169 \\
+	(8,32)	&(93,7)&2.222 \\
+	(21,68)&(29,80)&1.599 \\
+	(17,88)&(61,2)&2.311 \\
+	(86,49)&(65,41)&1.444 \\
+	(3,87)&(92,98)&1.804 \\
+	(79,80)&(24,79)&1.455 \\
+	(25,20)&(64,77)&1.479 \\
+	(69,70)&(48,46)&1.545 \\
+	(36,65)&(42,91)&2.798 \\
+	(52,39)&(4,27)&1.227 \\
+	(2,47)&(18,22)&2.340 \\
+	(14,80)&(87,76)&1.926 \\
+	(9,52)&(19,39)&1.199 \\
+	(52,1)&(20,34)&1.360 \\
+	(60,0)&(97,84)&1.492 \\
+	(56,60)&(1,50)&0.843 \\
+	(54,88)&(87,83)&1.060 \\
+	(56,4)&(61,33)&7.559 \\
+	(82,55)&(86,57)&9.465 \\
+	(91,96)&(50,5)&2.513 \\
+	(83,34)&(94,88)&2.283 \\
+	(41,92)&(36,40)&5.949 \\
+	(62,76)&(24,59)&0.923 \\
+	(54,75)&(19,0)&15.96 \\
+	(34,88)&(70,75)&1.059 \\
+	(27,98)&(68,15)&1.801 \\
+	(76,7)&(79,35)&10.96 \\
+	(44,60)&(43,54)&18.18 \\
+	(76,87)&(87,5)&3.351 \\
 
     \end{tabular}
     \caption{The effieciencies of 30 random start and goal states on a 100x100 pgm map, using branch-and-bound.}
@@ -94,46 +102,46 @@ Table 1 shows 30 randomly chosen start and goal states and their corresponding e
 \subsection{Assessing the efficiency of my A* search algorithm}
 Table 2 shows the efficencies of the same 30 states when using the A* algortithm The data below shows the mean average, highest and lowest:
 \begin{itemize}
-	\item Average Efficiency: 0.07348
-	\item Hieghst Efficiency: 0.4375
-	\item Lowest Efficiency: 0.01848
-	\item Range: 0.41902
+	\item Average Efficiency:	7.348\%
+	\item Hieghst Efficiency:		43.75\%
+	\item Lowest Efficiency:		1.848\%
+	\item Range:				41.902\%
 \end{itemize}
 
 \begin{table}[ht]
     \centering
     \begin{tabular}{|c|c|c|}
-	Start State (y,x)&Goal State (y,x)&Efficiency (4sf) \\ \hline
-	(90,70)&(75,38)&0.06409 \\
-	(8,32)&(93,7)&0.02834 \\
-	(21,68)&(29,80)&0.168 \\
-	(17,88)&(61,2)&0.02039 \\
-	(86,49)&(65,41)&0.07633 \\
-	(3,87)&(92,98)&0.02260 \\
-	(79,80)&(24,79)&0.1691 \\
-	(25,20)&(64,77)&0.02066 \\
-	(69,70)&(48,46)&0.1055 \\
-	(36,65)&(42,91)&0.09621 \\
-	(52,39)&(4,27)&0.04111 \\
-	(2,47)&(18,22)&0.03097 \\
-	(14,80)&(87,76)&0.01848 \\
-	(9,52)&(19,39)&0.01848 \\
-	(52,1)&(20,34)&0.04885 \\
-	(60,0)&(97,84)&0.02029 \\
-	(56,60)&(1,50)&0.1514 \\
-	(54,88)&(87,83)&0.03380 \\
-	(56,4)	&(61,33)&0.03380 \\
-	(82,55)&(86,57)&0.4375 \\
-	(91,96)&(50,5)&0.01910 \\
-	(83,34)&(94,88)&0.03411 \\
-	(41,92)&(36,40)&0.03411 \\
-	(62,76)&(24,59)&0.1290 \\
-	(54,75)&(19,0)&0.02027 \\
-	(34,88)&(70,75)&0.02027\\
-	(27,98)&(68,15)&0.01918 \\
-	(76,7)	&(79,35)&0.04604 \\
-	(44,60)&(43,54)&0.2051 \\
-	(76,87)&(87,5)&0.07127 \\
+	Start State (y,x)&Goal State (y,x)&Efficiency (\%, 4sf) \\ \hline
+	(90,70)&(75,38)&6.409 \\
+	(8,32)&(93,7)&2.834 \\
+	(21,68)&(29,80)&16.8 \\
+	(17,88)&(61,2)&2.039 \\
+	(86,49)&(65,41)&7.633 \\
+	(3,87)&(92,98)&2.260 \\
+	(79,80)&(24,79)&16.91 \\
+	(25,20)&(64,77)&2.066 \\
+	(69,70)&(48,46)&10.55 \\
+	(36,65)&(42,91)&9.621 \\
+	(52,39)&(4,27)&4.111 \\
+	(2,47)&(18,22)&3.097 \\
+	(14,80)&(87,76)&1.848 \\
+	(9,52)&(19,39)&1.848 \\
+	(52,1)&(20,34)&4.885 \\
+	(60,0)&(97,84)&2.029 \\
+	(56,60)&(1,50)&15.14 \\
+	(54,88)&(87,83)&3.380 \\
+	(56,4)&(61,33)&3.380 \\
+	(82,55)&(86,57)&43.75 \\
+	(91,96)&(50,5)&1.910 \\
+	(83,34)&(94,88)&3.411 \\
+	(41,92)&(36,40)&3.411 \\
+	(62,76)&(24,59)&12.90 \\
+	(54,75)&(19,0)&2.027 \\
+	(34,88)&(70,75)&2.027\\
+	(27,98)&(68,15)&1.918 \\
+	(76,7)&(79,35)&46.04 \\
+	(44,60)&(43,54)&20.51 \\
+	(76,87)&(87,5)&7.127 \\
 
     \end{tabular}
     \caption{The effieciencies of the same 30 start and goal states used in branch-and-bound, however searching using the A* algorithm.}
@@ -141,9 +149,14 @@ Table 2 shows the efficencies of the same 30 states when using the A* algortithm
 \end{table}
 
 \subsection{Comparing the two search strategies}
-\textit{Still to implement.}
+Based on the 30 searches, A* algorithm clearly has the better efficiency compared to branch-and-bound. Branch-and-bound averages around 3.2\%, whereas A* averages around 7.3\% - that is an increase of 4.1\%.
 
+However, branch-and-bound has a smaller range of values for efficiency (only 17.3\%) compared with A*'s range of 41.9\%. This implies that branch-and-bound produces more consistant search results than A*.
+
+\break
 \section{Conclusions}
-\textit{Still to implement.}
+To conclude, A* is more efficient than branch-and-bound; however, in the pgm map used brand-and-bound produced more consistant results. This could be down to the start and goal states set at the begining by a random number generator, or the fact that the map was only 100px by 100px. This was to be expected because A* uses an extra heuristic (estimated remaining cost) which, in most cases, improves the efficiency of the search significantly (by 4.1\% on average).
+
+If I had more time to do more tests, I would use a much larger map and produce more start and goal states. Increasing the map size by at least 500\% and calculating the efficiency for at least 100 different start and goal states, may provide a more accurate picture of which search is more efficient and more consistant.
 
 \end{document}
