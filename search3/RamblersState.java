@@ -101,4 +101,12 @@ public class RamblersState extends SearchState {
         return false;
     }
 
+    //return object as string (toString)
+    public String toString(){
+        return ("Pixel => x:" 
+            + String.valueOf(node.getx()) 
+            + ", y:" 
+            + String.valueOf(node.gety())
+        );
+    }
 }
