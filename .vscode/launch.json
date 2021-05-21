@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch RunRamblersAstar",
+            "request": "launch",
+            "mainClass": "search4.RunRamblersAstar",
+            "projectName": "com1005Assignment_68d85d57"
+        },
+        {
+            "type": "java",
             "name": "Launch RunRamblersBB",
             "request": "launch",
             "mainClass": "search3.RunRamblersBB",

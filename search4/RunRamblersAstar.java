@@ -3,12 +3,12 @@ package search4;
 public class RunRamblersAstar {
     public static void main(String[] arg) {
 
-        TerrainMap map = new TerrainMap("tmc.pgm");
+        TerrainMap map = new TerrainMap("diablo.pgm");
 
-        RamblersSearch searcher = new RamblersSearch(map, new Coords(15, 15));
-        SearchState initState = (SearchState) new RamblersState(new Coords(0, 0), 1, 1);
+        RamblersSearch searcher = new RamblersSearch(map, new Coords(1, 50));
+        SearchState initState = (SearchState) new RamblersState(new Coords(56, 60), 0, 0);
 
-        String res_astar = searcher.runSearch(initState, "AStar");
+        float res_astar = searcher.runSearchE(initState, "AStar");
         System.out.println(res_astar);
     }
 }
