@@ -1,17 +1,24 @@
 package search3;
 
 import java.util.ArrayList;
+import java.awt.Point;
 
 public class RamblersState extends SearchState {
 
     //Current node in the search state:
-    private String node;
+    private Point node;
 
     //Constructor:
-    public RamblersState(String cnode, int lc) {
+    public RamblersState(Point cnode, int lc) {
         node = cnode;
         localCost = lc;
     }
+
+    //Get node
+    public Point getNode(){
+        return node;
+    }
+    
 
     @Override
     boolean goalPredicate(Search searcher) {
