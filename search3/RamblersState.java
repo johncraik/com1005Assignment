@@ -83,7 +83,7 @@ public class RamblersState extends SearchState {
                 }
 
                 // Add the successor node to the list
-                succs.add(new RamblersState(new Coords((node.gety() - 1), node.getx()), cost));
+                succs.add(new RamblersState(succsNode, cost));
             }
         }
         //return the list
@@ -106,10 +106,10 @@ public class RamblersState extends SearchState {
 
     //return object as string (toString)
     public String toString(){
-        return ("x:" 
-            + String.valueOf(node.getx()) 
-            + ", y:" 
-            + String.valueOf(node.gety())
+        return ("y:" 
+            + String.valueOf(node.gety()) 
+            + ", x:" 
+            + String.valueOf(node.getx())
         );
     }
 }
