@@ -2,7 +2,10 @@ package search3;
 
 import java.util.ArrayList;
 
-public class RamblersState extends SearchState{
+public class RamblersState extends SearchState {
+
+    //Current node in the search state:
+    private String node;
 
     @Override
     boolean goalPredicate(Search searcher) {
@@ -21,5 +24,5 @@ public class RamblersState extends SearchState{
         // TODO Auto-generated method stub
         return false;
     }
-    
+
 }

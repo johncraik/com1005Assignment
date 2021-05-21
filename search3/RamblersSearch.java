@@ -1,6 +1,6 @@
 package search3;
 
-public class RamblersSearch extends Search {
+public class RamblersSearch {
     
     
 }
